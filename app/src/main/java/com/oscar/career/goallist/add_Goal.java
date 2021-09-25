@@ -23,6 +23,8 @@ public class add_Goal extends AppCompatActivity {
     CardView addG;
     RecyclerView currentView;
 
+    //https://github.com/androiddeveloper246/GoalListApp
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
