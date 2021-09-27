@@ -11,12 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.oscar.career.goallist.R;
 
+import java.util.List;
+
 public class addGoalAdpter extends RecyclerView.Adapter<addGoalAdpter.MyAddGoal> {
 
     RecyclerView currentRecyclerView;
+    List<String> data;
 
-    public addGoalAdpter(RecyclerView currentRecyclerView) {
+    public addGoalAdpter(RecyclerView currentRecyclerView, List<String> data) {
         this.currentRecyclerView = currentRecyclerView;
+        this.data = data;
     }
 
     @NonNull
@@ -28,12 +32,12 @@ public class addGoalAdpter extends RecyclerView.Adapter<addGoalAdpter.MyAddGoal>
 
     @Override
     public void onBindViewHolder(@NonNull MyAddGoal holder, int position) {
-
+        holder.addNewItem.setText(data.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return data.size();
     }
 
     public  class MyAddGoal extends RecyclerView.ViewHolder{
@@ -41,6 +45,13 @@ public class addGoalAdpter extends RecyclerView.Adapter<addGoalAdpter.MyAddGoal>
         ImageView  dragOntouch;
         ImageView deleteNote;
         TextView addNewItem;
+
+        public MyAddGoal(@NonNull View itemView, ImageView dragOntouch, ImageView deleteNote, TextView addNewItem) {
+            super(itemView);
+            this.dragOntouch = dragOntouch;
+            this.deleteNote = deleteNote;
+            this.addNewItem = addNewItem;
+        }
 
         public MyAddGoal(@NonNull View itemView) {
             super(itemView);
