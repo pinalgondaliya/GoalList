@@ -7,4 +7,8 @@
     <string name="search">Search</string>
     <string name="note">Note</string>
     <string name="save">Save</string>
+    <string name="edit_goal">edit</string>
+    <string name="delete_goal">delete</string>
+    <string name="expand_goal">expand</string>
+    <string name="data">Data</string>
 </resources>

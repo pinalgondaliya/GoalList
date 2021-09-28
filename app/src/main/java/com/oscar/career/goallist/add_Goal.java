@@ -20,8 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.oscar.career.goallist.adapter.addGoalAdpter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -57,13 +59,16 @@ public class add_Goal extends AppCompatActivity {
         data.add("python");
         data.add("cidi");
 
+        addGoalAdpter a = new addGoalAdpter(currentView,data);
+        currentView.setAdapter(a);
+
         currentView.setLayoutManager(new LinearLayoutManager(this));
 
         addG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addGoalAdpter a = new addGoalAdpter(currentView,data);
-                currentView.setAdapter(a);
+                data.add(" ");
+                currentView.getAdapter().notifyDataSetChanged();
             }
         });
 
@@ -74,6 +79,12 @@ public class add_Goal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MaterialDatePicker datePicker = MaterialDatePicker.Builder.datePicker().setSelection(date).build();
+                datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+                    @Override
+                    public void onPositiveButtonClick(Object selection) {
+                        selectDate.setText(datePicker.getHeaderText());
+                    }
+                });
                 datePicker.show(getSupportFragmentManager(),"tag1");
             }
         });
@@ -90,23 +101,10 @@ public class add_Goal extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (R.id.savebtn == item.getItemId()){
-            if(!goalTitle.getText().toString().isEmpty()){
 
-            }else{
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("exit");
-                builder.setMessage("please enter the goal title");
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(add_Goal.this, "ok", Toast.LENGTH_SHORT).show();
-                    }
-                }).create();
-                builder.show();
-            }
-
+            //check date validation
             if(!goalTitle.getText().toString().isEmpty()){
-                if(!selectDate.getText().toString().isEmpty()){
+                if(!selectDate.getText().toString().equals("Select Date")){
 
                 }else{
                     AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -125,8 +123,24 @@ public class add_Goal extends AppCompatActivity {
                     }).create();
                     alert.show();
                 }
+            }//check title validation
+            else if(!selectDate.getText().toString().equals("Select Date")){
+                if (!goalTitle.getText().toString().isEmpty()){
 
-            }else{
+                }else{
+                    AlertDialog.Builder ab = new AlertDialog.Builder(this);
+                    ab.setTitle("alert");
+                    ab.setMessage("please Enter the title first");
+                    ab.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(add_Goal.this, "ok", Toast.LENGTH_SHORT).show();
+                        }
+                    }).create();
+                    ab.show();
+                }
+            }
+            else{
                 AlertDialog.Builder ab = new AlertDialog.Builder(this);
                 ab.setTitle("alert");
                 ab.setMessage("please select date and title first");

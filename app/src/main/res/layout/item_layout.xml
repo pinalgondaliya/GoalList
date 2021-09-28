@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_drag_indicator_24"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/addNewItem"
                 android:paddingStart="15dp"
                 android:paddingTop="15dp"

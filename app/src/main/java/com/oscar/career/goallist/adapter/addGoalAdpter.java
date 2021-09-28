@@ -3,6 +3,7 @@ package com.oscar.career.goallist.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,9 +45,9 @@ public class addGoalAdpter extends RecyclerView.Adapter<addGoalAdpter.MyAddGoal>
 
         ImageView  dragOntouch;
         ImageView deleteNote;
-        TextView addNewItem;
+        EditText addNewItem;
 
-        public MyAddGoal(@NonNull View itemView, ImageView dragOntouch, ImageView deleteNote, TextView addNewItem) {
+        public MyAddGoal(@NonNull View itemView, ImageView dragOntouch, ImageView deleteNote, EditText addNewItem) {
             super(itemView);
             this.dragOntouch = dragOntouch;
             this.deleteNote = deleteNote;
