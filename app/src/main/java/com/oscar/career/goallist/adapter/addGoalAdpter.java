@@ -11,15 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.oscar.career.goallist.R;
+import com.oscar.career.goallist.database.SubGoalList;
 
 import java.util.List;
 
 public class addGoalAdpter extends RecyclerView.Adapter<addGoalAdpter.MyAddGoal> {
 
     RecyclerView currentRecyclerView;
-    List<String> data;
+    List<SubGoalList> data;
 
-    public addGoalAdpter(RecyclerView currentRecyclerView, List<String> data) {
+    public addGoalAdpter(RecyclerView currentRecyclerView, List<SubGoalList> data) {
         this.currentRecyclerView = currentRecyclerView;
         this.data = data;
     }
@@ -33,7 +34,7 @@ public class addGoalAdpter extends RecyclerView.Adapter<addGoalAdpter.MyAddGoal>
 
     @Override
     public void onBindViewHolder(@NonNull MyAddGoal holder, int position) {
-        holder.addNewItem.setText(data.get(position));
+        holder.addNewItem.setText(data.get(position).getSub_goal_name());
     }
 
     @Override

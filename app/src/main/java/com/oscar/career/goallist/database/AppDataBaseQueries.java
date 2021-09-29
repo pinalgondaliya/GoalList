@@ -14,4 +14,10 @@ public interface AppDataBaseQueries {
 
     @Query("SELECT * FROM GoalList")
     List<GoalList> getAllData();
+
+    @Insert
+    void insertSubGoalData(SubGoalList sub);
+
+    @Query("SELECT * FROM SubGoalList")
+    List<SubGoalList> getAllSubGoalData();
 }

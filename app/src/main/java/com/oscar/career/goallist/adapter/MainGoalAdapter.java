@@ -36,8 +36,7 @@ public class MainGoalAdapter extends RecyclerView.Adapter<MainGoalAdapter.MainGo
     @Override
     public void onBindViewHolder(@NonNull MainGoal holder, int position) {
         holder.goalTitle.setText(mainGoals.get(position).getGoalTitle());
-        holder.goalDate.setText(mainGoals.get(position).getDate());
-        holder.subGoalData.setText(mainGoals.get(position).getEditNote());
+        holder.goalDate.setText(mainGoals.get(position).getGoalDate());
     }
 
     @Override
@@ -57,7 +56,6 @@ public class MainGoalAdapter extends RecyclerView.Adapter<MainGoalAdapter.MainGo
 
             goalTitle = itemView.findViewById(R.id.goalTitle);
             goalDate = itemView.findViewById(R.id.goalDate);
-            subGoalData = itemView.findViewById(R.id.subGoalData);
         }
     }
 }
