@@ -35,6 +35,7 @@ public class add_Goal extends AppCompatActivity {
     EditText goalTitle1;
     TextView selectDate;
     AppDataBaseQueries appDataBaseQueries;
+    public static List<SubGoalList> data;
 
     //https://github.com/androiddeveloper246/GoalListApp
 
@@ -54,7 +55,7 @@ public class add_Goal extends AppCompatActivity {
         appDataBaseQueries = gb.getAllQueries();
 
 
-        List<SubGoalList> data = new ArrayList<>();
+       data = new ArrayList<>();
 //        data.add("java");
 //        data.add("python");
 //        data.add("cidi");
@@ -69,9 +70,9 @@ public class add_Goal extends AppCompatActivity {
             public void onClick(View v) {
 //                data.add(" ");
 
-                SubGoalList sub = new SubGoalList("dfrg",1);
+                SubGoalList sub = new SubGoalList(" ",1);
                 data.add(sub);
-                appDataBaseQueries.insertSubGoalData(sub);
+//                appDataBaseQueries.insertSubGoalData(sub);
                 currentView.getAdapter().notifyDataSetChanged();
             }
         });
@@ -111,8 +112,11 @@ public class add_Goal extends AppCompatActivity {
 
 
             GoalList g = new GoalList(goalTitle,goalDate);
-            appDataBaseQueries.insertGoalList(g);
+            long newInsertedId = appDataBaseQueries.insertGoalList(g);
 
+            for (int i = 0; i <data.size() ; i++) {
+                appDataBaseQueries.insertSubGoalData(new SubGoalList(data.get(i).getSub_goal_name(),(int)newInsertedId));
+            }
 
 
 

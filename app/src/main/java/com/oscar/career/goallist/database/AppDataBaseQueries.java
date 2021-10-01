@@ -10,7 +10,7 @@ import java.util.List;
 public interface AppDataBaseQueries {
 
     @Insert
-    void insertGoalList(GoalList g);
+    long insertGoalList(GoalList g);
 
     @Query("SELECT * FROM GoalList")
     List<GoalList> getAllData();
@@ -20,4 +20,8 @@ public interface AppDataBaseQueries {
 
     @Query("SELECT * FROM SubGoalList")
     List<SubGoalList> getAllSubGoalData();
+
+    @Query("DELETE FROM SubGoalList WHERE sub_goal_id=:subid")
+    void deleteSubGoalData(int subid);
+
 }

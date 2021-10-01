@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
 public class SubGoalList {
 
     @PrimaryKey(autoGenerate = true)
-    private int sub_goal_id;
+    public int sub_goal_id;
 
     @ColumnInfo(name = "sub_goal_name")
     public String sub_goal_name;
