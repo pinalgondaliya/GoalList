@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,6 +39,8 @@ public class add_Goal extends AppCompatActivity {
     public static List<SubGoalList> data;
 
     //https://github.com/androiddeveloper246/GoalListApp
+
+    // task amd back stack
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +121,7 @@ public class add_Goal extends AppCompatActivity {
                 appDataBaseQueries.insertSubGoalData(new SubGoalList(data.get(i).getSub_goal_name(),(int)newInsertedId));
             }
 
+            finish();
 
 
             //check date validation

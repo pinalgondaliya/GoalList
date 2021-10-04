@@ -21,6 +21,9 @@ public interface AppDataBaseQueries {
     @Query("SELECT * FROM SubGoalList")
     List<SubGoalList> getAllSubGoalData();
 
+    @Query("DELETE FROM GoalList WHERE column_id=:id")
+    void deleteGoalList(int id);
+
     @Query("DELETE FROM SubGoalList WHERE sub_goal_id=:subid")
     void deleteSubGoalData(int subid);
 

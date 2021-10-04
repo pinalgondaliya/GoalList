@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.oscar.career.goallist.adapter.MainGoalAdapter;
 import com.oscar.career.goallist.database.AppDataBaseQueries;
@@ -21,8 +23,10 @@ import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
 
-    AppDataBaseQueries appDataBaseQueries;
+    public static AppDataBaseQueries appDataBaseQueries;
     RecyclerView rv;
+    ImageView deleteGoal;
+   public static List<GoalList> goalLists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +35,19 @@ public class MainActivity extends AppCompatActivity {
 
         rv = findViewById(R.id.rv);
 
-        GoalDatabase gb = Room.databaseBuilder(this,GoalDatabase.class,"goaldatabase_details").allowMainThreadQueries().build();
+        GoalDatabase gb = Room.databaseBuilder(this,GoalDatabase.class,"Goal_Database").allowMainThreadQueries().build();
         appDataBaseQueries = gb.getAllQueries();
 
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        List<GoalList> goalLists = appDataBaseQueries.getAllData();
-        rv.setAdapter(new MainGoalAdapter(goalLists,this));
+        goalLists = appDataBaseQueries.getAllData();
+        rv.setAdapter(new MainGoalAdapter(rv,goalLists,this));
+
+
+    }
+
+    public ImageView getDeleteGoal(){
+        return deleteGoal;
     }
 
     @Override
@@ -50,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.addGoalItem){
             Intent intent = new Intent(MainActivity.this,add_Goal.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
